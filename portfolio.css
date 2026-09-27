@@ -608,6 +608,15 @@ nav a:hover {
     );
 }
 
+.skill-card h3 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.skill-card h3 span {
+    color: var(--green);
+    font-size: 0.75rem;
+}
 
 /* =========================
    PROJECTS
