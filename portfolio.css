@@ -682,10 +682,21 @@ nav a:hover {
 }
 
 .project-image.future {
-    background: #09090d;
-    color: #444;
-}
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            rgba(255, 49, 88, .25),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 70% 70%,
+            rgba(54, 140, 255, .25),
+            transparent 30%
+        ),
+        #09090d;
 
+    color: white;
+}
 .project-content {
     padding: 35px;
 }
