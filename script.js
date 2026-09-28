@@ -196,3 +196,45 @@ document.addEventListener("keydown", event => {
     }
 
 });
+
+/* =========================
+   DYNAMIC ISLAND MUSIC
+========================= */
+
+const siteAudio = document.getElementById("siteAudio");
+const playBtn = document.getElementById("playBtn");
+const musicIsland = document.getElementById("musicIsland");
+const trackStatus = document.getElementById("trackStatus");
+
+playBtn.addEventListener("click", async () => {
+
+    try {
+
+        if (siteAudio.paused) {
+
+            await siteAudio.play();
+
+            playBtn.textContent = "❚❚";
+            trackStatus.textContent = "Now playing";
+
+            musicIsland.classList.add("playing");
+
+        } else {
+
+            siteAudio.pause();
+
+            playBtn.textContent = "▶";
+            trackStatus.textContent = "Paused";
+
+            musicIsland.classList.remove("playing");
+
+        }
+
+    } catch (error) {
+
+        console.error("Audio error:", error);
+        trackStatus.textContent = "Could not play audio";
+
+    }
+
+});
