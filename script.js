@@ -197,44 +197,73 @@ document.addEventListener("keydown", event => {
 
 });
 
-/* =========================
-   DYNAMIC ISLAND MUSIC
-========================= */
 
-const siteAudio = document.getElementById("siteAudio");
-const playBtn = document.getElementById("playBtn");
-const musicIsland = document.getElementById("musicIsland");
-const trackStatus = document.getElementById("trackStatus");
 
-playBtn.addEventListener("click", async () => {
+ /* =========================
+    CUSTOM RGB CURSOR
+ ========================= */
 
-    try {
+const rgbCursor = document.getElementById("rgbCursor");
+const rgbCursorGlow = document.getElementById("rgbCursorGlow");
 
-        if (siteAudio.paused) {
+let mouseX = 0;
+let mouseY = 0;
 
-            await siteAudio.play();
+let glowX = 0;
+let glowY = 0;
 
-            playBtn.textContent = "❚❚";
-            trackStatus.textContent = "Now playing";
 
-            musicIsland.classList.add("playing");
+/* Track mouse */
 
-        } else {
+document.addEventListener("mousemove", (event) => {
 
-            siteAudio.pause();
+    mouseX = event.clientX;
+    mouseY = event.clientY;
 
-            playBtn.textContent = "▶";
-            trackStatus.textContent = "Paused";
+    rgbCursor.style.left = `${mouseX}px`;
+    rgbCursor.style.top = `${mouseY}px`;
 
-            musicIsland.classList.remove("playing");
+});
 
-        }
 
-    } catch (error) {
+/* Smooth glow movement */
 
-        console.error("Audio error:", error);
-        trackStatus.textContent = "Could not play audio";
+function animateCursor() {
 
-    }
+    glowX += (mouseX - glowX) * 0.15;
+    glowY += (mouseY - glowY) * 0.15;
+
+    rgbCursorGlow.style.left = `${glowX}px`;
+    rgbCursorGlow.style.top = `${glowY}px`;
+
+    requestAnimationFrame(animateCursor);
+
+}
+
+animateCursor();
+
+
+/* Interactive elements */
+
+const interactiveElements = document.querySelectorAll(
+    "a, button, input, textarea, select, .project-card, .skill-card, .media-card"
+);
+
+interactiveElements.forEach(element => {
+
+    element.addEventListener("mouseenter", () => {
+
+        rgbCursor.classList.add("hovering");
+        rgbCursorGlow.classList.add("hovering");
+
+    });
+
+
+    element.addEventListener("mouseleave", () => {
+
+        rgbCursor.classList.remove("hovering");
+        rgbCursorGlow.classList.remove("hovering");
+
+    });
 
 });

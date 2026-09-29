@@ -1392,134 +1392,76 @@ footer {
 
 }
 
-/* =========================
-   DYNAMIC ISLAND MUSIC PLAYER
-========================= */
-
-.music-island {
-    position: fixed;
-    left: 50%;
-    bottom: 24px;
-    transform: translateX(-50%);
-
-    width: min(380px, calc(100% - 30px));
-
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    padding: 8px 10px 8px 8px;
-
-    background: rgba(12, 12, 17, 0.92);
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 999px;
-
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-
-    box-shadow: 0 15px 40px rgba(0,0,0,.4);
-
-    z-index: 500;
-
-    transition: .3s ease;
-}
-
-.music-island:hover {
-    transform: translateX(-50%) translateY(-3px);
-}
 
 
-/* Album cover */
+@media (pointer: fine) {
 
-.music-cover {
-    width: 42px;
-    height: 42px;
-    flex-shrink: 0;
-
-    overflow: hidden;
-    border-radius: 50%;
-}
-
-.music-cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-
-/* Track information */
-
-.music-details {
-    flex: 1;
-    min-width: 0;
-
-    display: flex;
-    flex-direction: column;
-}
-
-.music-details strong {
-    font-size: .8rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.music-details span {
-    color: var(--muted);
-    font-size: .68rem;
-}
-
-
-/* Play button */
-
-.music-btn {
-    width: 38px;
-    height: 38px;
-
-    display: grid;
-    place-items: center;
-
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 50%;
-
-    background: rgba(255,255,255,.07);
-    color: white;
-
-    cursor: pointer;
-
-    transition: .25s ease;
-}
-
-.music-btn:hover {
-    background: rgba(255,255,255,.15);
-    transform: scale(1.05);
-}
-
-
-/* Album animation */
-
-.music-island.playing .music-cover {
-    animation: albumSpin 6s linear infinite;
-}
-
-@keyframes albumSpin {
-    from {
-        transform: rotate(0deg);
+    body,
+    a,
+    button,
+    input,
+    textarea,
+    select {
+        cursor: none;
     }
 
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-
-/* Mobile */
-
-@media (max-width: 600px) {
-
-    .music-island {
-        bottom: 14px;
-        width: calc(100% - 20px);
+    .rgb-cursor,
+    .rgb-cursor-glow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
     }
 
+    /* Tiny cursor dot */
+    .rgb-cursor {
+        width: 6px;
+        height: 6px;
+        background: white;
+
+        box-shadow:
+            0 0 6px var(--red),
+            0 0 10px var(--green),
+            0 0 14px var(--blue);
+
+        transition: width .2s ease, height .2s ease;
+    }
+
+    /* Smaller outer glow */
+    .rgb-cursor-glow {
+        width: 24px;
+        height: 24px;
+
+        border: 1px solid transparent;
+
+        background:
+            linear-gradient(#050507, #050507) padding-box,
+            conic-gradient(
+                var(--red),
+                var(--green),
+                var(--blue),
+                var(--red)
+            ) border-box;
+
+        opacity: .65;
+        transition:
+            width .2s ease,
+            height .2s ease,
+            opacity .2s ease;
+    }
+
+    /* Slight expansion on hover */
+    .rgb-cursor.hovering {
+        width: 9px;
+        height: 9px;
+    }
+
+    .rgb-cursor-glow.hovering {
+        width: 34px;
+        height: 34px;
+        opacity: .9;
+    }
 }
