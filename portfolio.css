@@ -1465,3 +1465,29 @@ footer {
         opacity: .9;
     }
 }
+
+.project-image.guhsip {
+    background: #09090d;
+}
+
+.project-image.guhsip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s ease;
+}
+
+.project-card:hover .project-image.guhsip img {
+    transform: scale(1.05);
+}
+
+.project-type {
+    display: inline-block;
+    margin-bottom: 10px;
+
+    color: var(--green);
+    font-family: monospace;
+    font-size: .7rem;
+    letter-spacing: 1px;
+}
